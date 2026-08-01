@@ -291,7 +291,8 @@ For commercial licensing, please contact support@quantumnous.com
   --sidebar-ring: oklch(0.6359 0.1699 307.95);
 }
 
-/* ── Simple Large-font ────────────────────────────────────────────────── */
+/* ── Simple ───────────────────────────────────────────────────────────── */
+[data-theme-preset='simple'],
 [data-theme-preset='simple-large'] {
   --background: oklch(0.99 0 0);
   --foreground: oklch(0.15 0 0);
@@ -341,7 +342,10 @@ For commercial licensing, please contact support@quantumnous.com
 
   --skeleton-base: oklch(0.9 0 0);
   --skeleton-highlight: oklch(0.97 0 0);
+}
 
+/* Simple Large-font only changes density; `simple` keeps the normal scale. */
+[data-theme-preset='simple-large'] {
   --radius: 0.5rem;
   --text-xs: 0.9rem;
   --text-sm: 1rem;
@@ -352,6 +356,7 @@ For commercial licensing, please contact support@quantumnous.com
   --text-3xl: 2.15rem;
   --spacing: 0.3rem;
 }
+.dark [data-theme-preset='simple'],
 .dark [data-theme-preset='simple-large'] {
   --background: oklch(0.215 0 0);
   --foreground: oklch(0.97 0 0);
@@ -426,10 +431,11 @@ For commercial licensing, please contact support@quantumnous.com
  *   - `anthropic`: warm cream surfaces are a brand choice, NOT a primary-mix
  *     derivation (the Anthropic system deliberately uses warm neutrals for
  *     cards/borders rather than tinting them with the clay accent).
- *   - `simple-large`: keeps intentionally neutral, high-contrast surfaces. */
+ *   - `simple` and `simple-large`: keep intentionally neutral, high-contrast
+ *     surfaces. */
 [data-theme-preset]:not([data-theme-preset='default']):not(
   [data-theme-preset='anthropic']
-):not([data-theme-preset='simple-large']) {
+):not([data-theme-preset='simple']):not([data-theme-preset='simple-large']) {
   --card: color-mix(in oklch, var(--primary) 3%, var(--background));
   --popover: color-mix(in oklch, var(--primary) 5%, var(--background));
   --muted: color-mix(in oklch, var(--primary) 7%, var(--background));
@@ -454,7 +460,7 @@ For commercial licensing, please contact support@quantumnous.com
 .dark
   [data-theme-preset]:not([data-theme-preset='default']):not(
     [data-theme-preset='anthropic']
-  ):not([data-theme-preset='simple-large']) {
+  ):not([data-theme-preset='simple']):not([data-theme-preset='simple-large']) {
   --card: color-mix(in oklch, var(--primary) 8%, var(--background));
   --popover: color-mix(in oklch, var(--primary) 12%, var(--background));
   --muted: color-mix(in oklch, var(--primary) 12%, var(--background));

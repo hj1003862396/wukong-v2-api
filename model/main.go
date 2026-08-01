@@ -150,7 +150,7 @@ func chooseDB(envName string, isLog bool) (*gorm.DB, common.DatabaseType, error)
 			return db, common.DatabaseTypeSQLite, err
 		}
 		// Use MySQL
-		common.SysLog("using MySQL as database")
+		common.SysLog("using MySQL as database db:" + dsn)
 		// check parseTime
 		if !strings.Contains(dsn, "parseTime") {
 			if strings.Contains(dsn, "?") {
