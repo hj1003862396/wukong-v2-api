@@ -638,11 +638,11 @@ export function OverviewDashboard() {
                   'lg:grid-cols-2'
               )}
             >
-              {/*{showApiInfoPanel && (*/}
-              {/*  <CardStaggerItem>*/}
-              {/*    <ApiInfoPanel />*/}
-              {/*  </CardStaggerItem>*/}
-              {/*)}*/}
+              {showApiInfoPanel && (
+                <CardStaggerItem>
+                  <ApiInfoPanel />
+                </CardStaggerItem>
+              )}
               {showAnnouncementsPanel && (
                 <CardStaggerItem>
                   <AnnouncementsPanel />

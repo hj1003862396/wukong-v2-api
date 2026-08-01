@@ -135,8 +135,8 @@ export const DEFAULT_TOKEN_UNIT: TokenUnit = 'M'
 
 /** View mode options */
 export const VIEW_MODES = {
-  CARD: 'card',
   TABLE: 'table',
+  CARD: 'card',
 } as const
 
 export type ViewMode = (typeof VIEW_MODES)[keyof typeof VIEW_MODES]
