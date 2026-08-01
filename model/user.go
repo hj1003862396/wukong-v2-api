@@ -489,6 +489,26 @@ func HardDeleteUserById(id int) error {
 	return user.HardDelete()
 }
 
+func inviteQuotaUser(inviterId int, quota int) (err error) {
+	user, err := GetUserById(inviterId, true)
+	if err != nil {
+		return err
+	}
+	user.AffCount++
+	user.AffQuota += quota
+	user.AffHistoryQuota += quota
+	return DB.Save(user).Error
+}
+
+func RewardInviterForTopup(userId int, bonus int) {
+	user, err := GetUserById(userId, false)
+	if err != nil || user.InviterId == 0 || bonus <= 0 {
+		return
+	}
+	_ = inviteQuotaUser(user.InviterId, bonus)
+	RecordLog(user.InviterId, LogTypeTopup, fmt.Sprintf("下级[%s]充值为您贡献了%s的提成", user.Username, logger.LogQuota(bonus)))
+}
+
 func inviteUser(inviterId int) (err error) {
 	user, err := GetUserById(inviterId, true)
 	if err != nil {

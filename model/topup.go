@@ -155,7 +155,9 @@ func Recharge(referenceId string, customerId string, callerIp string) (err error
 	}
 
 	RecordTopupLog(topUp.UserId, fmt.Sprintf("使用在线充值成功，充值金额: %v，支付金额：%d", logger.FormatQuota(int(quota)), topUp.Amount), callerIp, topUp.PaymentMethod, PaymentMethodStripe)
-
+	if inviterBonus := common.QuotaFromFloat(quota * 0.1); inviterBonus > 0 {
+		RewardInviterForTopup(topUp.UserId, inviterBonus)
+	}
 	return nil
 }
 

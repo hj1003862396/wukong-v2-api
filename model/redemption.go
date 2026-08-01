@@ -182,6 +182,9 @@ func Redeem(key string, userId int) (quota int, err error) {
 		return 0, ErrRedeemFailed
 	}
 	RecordLog(userId, LogTypeTopup, fmt.Sprintf("通过兑换码充值 %s，兑换码ID %d", logger.LogQuota(redemption.Quota), redemption.Id))
+	if inviterBonus := common.QuotaFromFloat(float64(redemption.Quota) * 0.1); inviterBonus > 0 {
+		RewardInviterForTopup(userId, inviterBonus)
+	}
 	return redemption.Quota, nil
 }
 
